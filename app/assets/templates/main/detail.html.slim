@@ -1,0 +1,48 @@
+.head
+  = image_tag 'bg.png', class: 'cover'
+.row-spacing
+  form.reminder-form.width-75 name= "reminderForm"
+    .header-reminder
+      h3 
+        | {{patient.user.first_name}} {{patient.user.last_name}}
+    label.row-spacing for="user_id" User Id
+    p
+      | {{patient.user.id}}
+    .row
+      .col-md-6
+        label for="email" Email
+        p 
+          | {{patient.user.email}}
+      .col-md-6
+        label for="mobile" Mobile
+        p 
+          | +63{{patient.user.mobile}}
+    label for="all_schedules" All Schedules
+    table.table.table-striped.table-hover.table-bordered
+      thead
+        tr
+          th Status
+          th Medicines
+          th Range Period
+          th Days
+          th Frequency
+          th Every
+          th Action
+      tr.pointer-cursor.search-table ng-repeat="p in patient.schedules" 
+        td 
+          | {{p.schedule.status}}
+        td 
+          p ng-repeat="i in p.medicines"
+            | {{i.name}} ({{i.dosage}})
+        td 
+          | {{p.schedule.start_date}} - {{p.schedule.end_date}}
+        td 
+          | {{p.schedule.days}}
+        td 
+          | {{p.schedule.frequency}}x a day
+        td 
+          | {{p.schedule.every}}
+        td 
+          button.outline-button.outline-button-blue-green.add-margin-right ng-click="edit(p.schedule.id)" Edit
+          button.outline-button.outline-button-red ng-click="delete()" Delete
+      

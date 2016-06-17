@@ -1,0 +1,41 @@
+Joe.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+  $stateProvider
+    .state('index', {
+      url: '/',
+      templateUrl: '<%= asset_path("main/home.html") %>',
+      controller: 'HomeController'
+    })
+
+    .state('reminder', {
+      url: '/reminder',
+      templateUrl: '<%= asset_path("main/reminder.html") %>',
+      controller: 'ReminderController'
+    })
+
+    .state('list', {
+      url: '/list',
+      templateUrl: '<%= asset_path("main/list.html") %>',
+      controller: 'ListController'
+    })
+
+    .state('detail', {
+      url: '/detail/:patient_id',
+      templateUrl: '<%= asset_path("main/detail.html") %>',
+      controller: 'DetailController'
+    })
+
+    .state('edit_schedule', {
+      url: '/detail/:patient_id/schedule/:schedule_id',
+      templateUrl: '<%= asset_path("main/edit.html") %>',
+      controller: 'EditController'
+    })
+
+    $urlRouterProvider.otherwise('/');
+    $locationProvider.html5Mode({
+  enabled: true,
+  requireBase: false
+});
+
+  }).run(function($rootScope, $state) {
+      $rootScope.$state = $state;
+    });

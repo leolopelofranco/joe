@@ -1,0 +1,36 @@
+.head
+  = image_tag 'bg.png', class: 'cover'
+.row-spacing
+  form.reminder-form.width-75 name= "reminderForm"
+    .header-reminder
+      h3 All Reminders
+    table.table.table-striped.table-hover.table-bordered
+      thead
+        tr
+          th User Id
+          th First Name
+          th Last Name
+          th Email
+          th Mobile
+          th Medicines
+          th Schedules
+          th Status
+      tr.pointer-cursor.search-table ng-click="clickedPatient(i)" ng-repeat="i in data" 
+        td 
+          | {{i.user_id}}
+        td 
+          | {{i.first_name}}
+        td 
+          | {{i.last_name}}
+        td 
+          | {{i.email}}
+        td 
+          | {{i.mobile}}
+        td 
+          | {{i.medicines}}
+        td 
+          | {{i.schedules}}
+        td 
+          | {{i.status}}
+    .align-right
+      button.btn.btn-primary.btn-wide type="submit" ng-click="addReminder()" Add Reminder

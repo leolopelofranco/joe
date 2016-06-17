@@ -1,0 +1,88 @@
+.head
+  = image_tag 'bg.png', class: 'cover'
+.row-spacing
+  form.reminder-form.width-50 name= "reminderForm" ng-submit="submitReminderForm()"
+    .header-reminder
+      h3 Add a Reminder
+    .row
+      .col-md-6
+        span.input.input--hoshi
+          input#input-4.input__field.input__field--hoshi ng-model="reminder.first_name" type="text" 
+          label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="name" 
+            span.input__label-content.input__label-content--hoshi First Name
+      .col-md-6
+        span.input.input--hoshi
+          input#input-4.input__field.input__field--hoshi ng-model="reminder.last_name" type="text" 
+          label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="mobile" 
+            span.input__label-content.input__label-content--hoshi Last Name
+    .row
+      .col-md-6
+        span.input.input--hoshi
+          .country_code
+            | +63
+          input.country_c#input-4.input__field.input__field--hoshi ng-model="reminder.mobile" type="text" 
+          label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="name" 
+            span.input__label-content.input__label-content--hoshi Mobile
+      .col-md-6
+        span.input.input--hoshi
+          input#input-4.input__field.input__field--hoshi ng-model="reminder.email" type="text" 
+          label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="mobile" 
+            span.input__label-content.input__label-content--hoshi Email Address
+    .row ng-repeat="medicine in medicines"
+      .col-md-6
+        span.input.input--hoshi
+          input#input-5.input__field.input__field--hoshi ng-model="medicine.name" type="text" 
+          label.input__label.input__label--hoshi.input__label--hoshi-color-2 for="medicine" 
+            span.input__label-content.input__label-content--hoshi 
+              | Medicine Name {{ $index + 1 }}
+      .col-md-6
+        span.input.input--hoshi
+          input#input-6.input__field.input__field--hoshi ng-model="medicine.dosage" type="text" 
+          label.input__label.input__label--hoshi.input__label--hoshi-color-3 for="dosage" 
+            span.input__label-content.input__label-content--hoshi Dosage
+    a for="days" ng-click="addMedicine()" Add Medicine
+    .row
+      .col-md-6
+        span.input.input--hoshi
+          input#input-5.date-picker.input__field.input__field--hoshi ng-model="date" type="text" date-range-picker=""
+          label.input__label.input__label--hoshi.input__label--hoshi-color-2 for="medicine" 
+            span.input__label-content.input__label-content--hoshi Starting and Ending on
+    .inputs 
+      label for="days" Pick Days
+      .row
+        .col-md-6
+          input type="checkbox" name="days" ng-model="selected.ids[1]" ng-checked="everyday" ng-change="choose()" Monday
+        .col-md-6
+          input type="checkbox" name="days" ng-model="selected.ids[5]" ng-checked="everyday" ng-change="choose()" Friday
+      .row
+        .col-md-6
+          input type="checkbox" name="days" ng-model="selected.ids[2]" ng-checked="everyday" ng-change="choose()" Tuesday
+        .col-md-6
+          input type="checkbox" name="days" ng-model="selected.ids[6]" ng-checked="everyday" ng-change="choose()" Saturday
+      .row
+        .col-md-6
+          input type="checkbox" name="days" ng-model="selected.ids[3]" ng-checked="everyday" ng-change="choose()" Wednesday
+        .col-md-6
+          input type="checkbox" name="days" ng-model="selected.ids[0]" ng-checked="everyday" ng-change="choose()" Sunday
+      .row
+        .col-md-6
+          input type="checkbox" name="days" ng-model="selected.ids[4]" ng-checked="everyday" ng-change="choose()" Thursday
+    .inputs
+      label for="frequency" Frequency
+      select ng-change="change()" ng-options="frequency.value as frequency.name for frequency in frequencies" ng-model="frequency"
+        option style="display:none" value="" How many times a Day
+    .inputs
+      label for="alerts" Alerts
+      .row ng-repeat="alert in alerts"
+        .col-md-6
+          label for="alarm" 
+            | Alarm {{alert.alert}}
+        .col-md-6
+          input type="text" pick-a-time="alert.time" pick-a-time-options="options"
+      
+    .row.reminder-submit
+      button.btn.btn-default.add-margin-right Cancel
+      button.btn.btn-primary.btn-wide type="submit" Add Reminder
+          
+            
+          
