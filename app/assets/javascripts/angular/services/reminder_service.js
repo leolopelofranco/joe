@@ -1,5 +1,5 @@
 angular.module('Joe.services')
-  .service('ReminderService', function($q, $http) {
+  .service('ReminderService', ["$q", "$http", function($q, $http) {
     this.createReminder = function(data) {
 
       var d = $q.defer();
@@ -75,4 +75,4 @@ angular.module('Joe.services')
       return d.promise;
     }
 
-  });
+  }]);

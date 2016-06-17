@@ -1,5 +1,5 @@
 angular.module('Joe.controllers')
-  .controller('EditController', function($scope, ReminderService, $state, $stateParams) {
+  .controller('EditController', ["$scope", "ReminderService", "$state", "stateParams", function($scope, ReminderService, $state, $stateParams) {
     $scope.date = {
         startDate: moment(),
         endDate: moment().add(7, "days")
@@ -103,4 +103,4 @@ angular.module('Joe.controllers')
     }
 
 
-});
+}]);

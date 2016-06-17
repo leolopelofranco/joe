@@ -1,5 +1,5 @@
 angular.module('Joe.controllers')
-  .controller('DetailController', function($scope, ReminderService, $state, $stateParams) {
+  .controller('DetailController', ["$scope", "ReminderService", "$state", "$stateParams", function($scope, ReminderService, $state, $stateParams) {
 
 
     function dayOfWeekAsString(dayIndex) {
@@ -49,4 +49,4 @@ angular.module('Joe.controllers')
     }
 
 
-});
+}]);

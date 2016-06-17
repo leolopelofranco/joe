@@ -1,5 +1,5 @@
 angular.module('Joe.controllers')
-  .controller('ReminderController', function($scope, $state, ReminderService, $interval) {
+  .controller('ReminderController', ["$scope", "$state", "ReminderService", function($scope, $state, ReminderService) {
     $scope.selected =
     {
       ids: {"1": false}
@@ -11,10 +11,6 @@ angular.module('Joe.controllers')
       alert: 1,
       time:""
     }]
-
-    $scope.options = {
-      interval: 15
-    }
 
     $scope.date = {
         startDate: moment(),
@@ -88,4 +84,4 @@ angular.module('Joe.controllers')
         name: "4 Times a Day",
         value: 4}];
 
-  });
+  }]);

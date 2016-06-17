@@ -1,5 +1,5 @@
 angular.module('Joe.controllers')
-  .controller('ListController', function($scope, ReminderService, $state, $stateParams) {
+  .controller('ListController', ["$scope", "ReminderService", "$state", "$stateParams", function($scope, ReminderService, $state, $stateParams) {
     ReminderService.getList()
       .then(function(d){
       $scope.data = d
@@ -15,4 +15,4 @@ angular.module('Joe.controllers')
 
 
 
-});
+}]);
