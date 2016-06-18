@@ -1,4 +1,4 @@
-Joe.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+Joe.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state('index', {
       url: '/',
@@ -36,6 +36,6 @@ Joe.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   requireBase: false
 });
 
-  }).run(function($rootScope, $state) {
+  }]).run(["$rootScope", "$state", function($rootScope, $state) {
       $rootScope.$state = $state;
-    });
+    }]);
