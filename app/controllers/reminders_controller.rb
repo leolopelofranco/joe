@@ -140,15 +140,17 @@ class RemindersController < ApplicationController
 
             phone_number = params['mobile_number']
             message = 'Thank you. Response noted.'
+            message_type = 'REPLY'
 
-            ChikkaModule.send_sms(phone_number, message)
+            ChikkaModule.send_sms(phone_number, message, message_type)
           end
         end
       else
         phone_number = params['mobile_number']
         message = 'Wrong Keyword. Reply YES if taken. If not, feel free to ignore this message.'
+        message_type = 'REPLY'
 
-        ChikkaModule.send_sms(phone_number, message)
+        ChikkaModule.send_sms(phone_number, message, message_type)
       end
     end
 

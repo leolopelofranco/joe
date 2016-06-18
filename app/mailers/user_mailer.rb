@@ -13,7 +13,8 @@ class UserMailer < ActionMailer::Base
         t = alarm.alarm.strftime("%l %P")
         message = "Hello #{current_user.first_name}! Time to take your#{t} meds. Reply YES if taken."
 
-        ChikkaModule.send_sms(phone_number, message)
+        message_type = 'SEND'
+        ChikkaModule.send_sms(phone_number, message, message_type)
 
         # TwilioModule.send_message(phone_number, message)
         alarm.status = "sent"

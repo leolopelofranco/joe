@@ -5,13 +5,13 @@ module ChikkaModule
       return Random.rand(10001..99999).to_s
     end
 
-    def send_sms(phone_number, message)
+    def send_sms(phone_number, message, message_type)
 
       message_id = generate_random_code()
 
       params = Hash.new
 
-      params['message_type'] = "SEND"
+      params['message_type'] = message_type
       params['mobile_number'] = phone_number
       params['shortcode'] = "29290684"
       params['message_id'] = message_id
@@ -21,6 +21,7 @@ module ChikkaModule
 
       response = Net::HTTP.post_form(URI.parse("https://post.chikka.com/smsapi/request"), params)
     end
+
   end
 
 end
