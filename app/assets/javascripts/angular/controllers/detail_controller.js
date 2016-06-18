@@ -3,7 +3,7 @@ angular.module('Joe.controllers')
 
 
     function dayOfWeekAsString(dayIndex) {
-      return ["Mon","Tue","Wed","Thur","Fri","Sat","Sun"][dayIndex];
+      return ["Sun","Mon","Tue","Wed","Thur","Fri","Sat"][dayIndex];
     }
 
     ReminderService.getPatient($stateParams.patient_id)
