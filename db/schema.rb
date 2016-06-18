@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20160614015616) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.integer  "dosage"
+    t.string   "dosage"
     t.integer  "schedule_id"
     t.integer  "user_id"
   end
