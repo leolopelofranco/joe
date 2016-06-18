@@ -10,11 +10,10 @@ class UserMailer < ActionMailer::Base
         Rails.logger.info 'Success'
         current_user = User.find(alarm.user_id)
         phone_number= current_user.mobile
-        t = alarm.alarm.strftime("%l %P")
-        message = "Hello #{current_user.first_name}! Time to take your#{t} meds. Reply YES if taken."
-
+        t = alarm.alarm.strftime("%I:%M %P")
+        message = "Hello #{current_user.first_name}! Time to take your #{t} meds. Reply YES if taken."
         message_type = 'SEND'
-        ChikkaModule.send_sms(phone_number, message, message_type)
+        response = ChikkaModule.send_sms(phone_number, message, message_type)
 
         # TwilioModule.send_message(phone_number, message)
         alarm.status = "sent"

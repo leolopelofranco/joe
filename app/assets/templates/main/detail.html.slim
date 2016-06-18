@@ -5,10 +5,7 @@
     .header-reminder
       h3 
         | {{patient.user.first_name}} {{patient.user.last_name}}
-    label.row-spacing for="user_id" User Id
-    p
-      | {{patient.user.id}}
-    .row
+    .row.row-spacing
       .col-md-6
         label for="email" Email
         p 
@@ -17,7 +14,7 @@
         label for="mobile" Mobile
         p 
           | +63{{patient.user.mobile}}
-    label for="all_schedules" All Schedules
+    label.row-spacing for="all_schedules" All Schedules
     table.table.table-striped.table-hover.table-bordered
       thead
         tr

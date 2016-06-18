@@ -26,6 +26,10 @@ angular.module('Joe.controllers')
 
     };
 
+    $scope.options = {
+      interval: 15
+    }
+
 
     $scope.submitReminderForm = function() {
 
@@ -47,6 +51,8 @@ angular.module('Joe.controllers')
       ReminderService.createReminder($scope.reminder)
         .then(function(d){
         console.log(d)
+
+        $state.go('list');
       })
     }
 

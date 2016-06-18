@@ -28,7 +28,8 @@ class RemindersController < ApplicationController
       med = Medicine.create(
                   name: medicine["name"],
                   dosage: medicine["dosage"],
-                  schedule_id: schedule.id
+                  schedule_id: schedule.id,
+                  user_id: user.id 
                 )
     end
 
