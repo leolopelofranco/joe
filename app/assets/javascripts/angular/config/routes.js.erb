@@ -1,4 +1,4 @@
-Joe.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", function($stateProvider, $urlRouterProvider, $locationProvider) {
+Joe.config(["$stateProvider", "$httpProvider", "$urlRouterProvider", "$locationProvider", "AuthProvider", function($stateProvider, $httpProvider, $urlRouterProvider, $locationProvider, AuthProvider) {
   $stateProvider
     .state('index', {
       url: '/',
@@ -6,8 +6,26 @@ Joe.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", functio
       controller: 'HomeController'
     })
 
+    .state('login', {
+      url: '/login',
+      templateUrl: '<%= asset_path("users/login.html") %>',
+      controller: 'HomeController'
+    })
+
+    .state('welcome', {
+      url: '/welcome/:patient_id',
+      templateUrl: '<%= asset_path("main/welcome.html") %>',
+      controller: 'HomeController'
+    })
+
+    .state('signup', {
+      url: '/signup',
+      templateUrl: '<%= asset_path("users/signup.html") %>',
+      controller: 'SignupController'
+    })
+
     .state('reminder', {
-      url: '/reminder',
+      url: '/patients/:patient_id/schedule',
       templateUrl: '<%= asset_path("main/reminder.html") %>',
       controller: 'ReminderController'
     })
@@ -19,17 +37,19 @@ Joe.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", functio
     })
 
     .state('detail', {
-      url: '/detail/:patient_id',
+      url: '/patients/:patient_id',
       templateUrl: '<%= asset_path("main/detail.html") %>',
       controller: 'DetailController'
     })
 
     .state('edit_schedule', {
-      url: '/detail/:patient_id/schedule/:schedule_id',
+      url: '/patients/:patient_id/schedule/:schedule_id',
       templateUrl: '<%= asset_path("main/edit.html") %>',
       controller: 'EditController'
     })
 
+    $httpProvider.defaults.withCredentials = true;
+    AuthProvider.registerPath('register');
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode({
   enabled: true,

@@ -1,0 +1,26 @@
+$monitor: 1200px;
+$laptop: 992px;
+$tablet: 768px;
+$mobile: 480px;
+$nano: 320px;
+
+@mixin breakpoint($width) {
+  @if $width == monitor {
+    @media (min-width: $monitor) { @content; }
+  }
+  @else if $width == laptop {
+    @media (min-width: $laptop) and (max-width: $monitor - 1) { @content; }
+  }
+  @else if $width == tablet {
+    @media (min-width: $tablet) and (max-width: $laptop - 1)  { @content; }
+  }
+  @else if $width == mobile {
+    @media (min-width: $mobile) and (max-width: $tablet - 1) { @content; }
+  }
+  @else if $width == micro {
+    @media (min-width: $nano) and (max-width: $mobile - 1) { @content; }
+  }
+  @else if $width == nano {
+    @media (max-width: $nano - 1)  { @content; }
+  }
+}

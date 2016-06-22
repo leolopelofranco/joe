@@ -1,0 +1,46 @@
+.head
+  = image_tag 'bg.png', class: 'cover'
+.row-spacing
+  form.reminder-form.width-50 name= "reminderForm" ng-submit="signupForm()"
+    .header-reminder
+      h3 Signup
+
+    .row
+      .col-md-6
+        span.input.input--hoshi
+          input#input-4.input__field.input__field--hoshi ng-model="signup.first_name" type="text"
+          label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="name"
+            span.input__label-content.input__label-content--hoshi First Name
+      .col-md-6
+        span.input.input--hoshi
+          input#input-4.input__field.input__field--hoshi ng-model="signup.last_name" type="text"
+          label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="mobile"
+            span.input__label-content.input__label-content--hoshi Last Name
+    .row
+      .col-md-6
+        span.input.input--hoshi
+          .country_code
+            | +63
+          input.country_c#input-4.input__field.input__field--hoshi ng-model="signup.mobile" type="text"
+          label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="name"
+            span.input__label-content.input__label-content--hoshi Mobile
+      .col-md-6
+        span.input.input--hoshi
+          input#input-4.input__field.input__field--hoshi ng-model="signup.email" type="email"
+          label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="mobile"
+            span.input__label-content.input__label-content--hoshi Email Address
+    .row
+      .col-md-6
+        span.input.input--hoshi
+          input#input-4.input__field.input__field--hoshi ng-model="signup.password" type="password"
+          label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="mobile"
+            span.input__label-content.input__label-content--hoshi Password
+      .col-md-6
+        span.input.input--hoshi
+          input#input-4.input__field.input__field--hoshi ng-model="signup.password_confirmation" type="password"
+          label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="mobile"
+            span.input__label-content.input__label-content--hoshi Password Confirmation
+            
+    .row.reminder-submit
+      button.btn.btn-default.add-margin-right Cancel
+      button.btn.btn-primary.btn-wide type="submit" Signup

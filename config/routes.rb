@@ -5,9 +5,26 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
+  devise_for :users, :skip => [:sessions],
+    :controllers => {
+      registrations: "users/registrations",
+      sessions: "users/sessions"
+    }
+    as :user do
+      post 'users/login' => 'users/sessions#create'
+      delete 'users/:user_id/logout' => 'users/sessions#destroy'
+    end
+
+  devise_scope :user do
+    post 'login' => 'sessions#create', :as => :login
+    delete 'logout' => 'sessions#destroy', :as => :logout
+    post '/register' => 'users/registrations#create', :as => :register
+    delete 'delete_account' => 'registrations#destroy', :as => :delete_account
+  end
+
   root 'home#index'
 
-  post '/reminder/create' => 'reminders#create'
+  post '/reminder' => 'reminders#create'
 
   post '/reminder/edit' => 'reminders#edit'
 

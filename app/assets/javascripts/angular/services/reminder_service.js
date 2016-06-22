@@ -5,7 +5,7 @@ angular.module('Joe.services')
       var d = $q.defer();
       $http({
         method: 'POST',
-        url: '/reminder/create',
+        url: '/reminder',
         data: data
       }).success(function(data){
         d.resolve(data);

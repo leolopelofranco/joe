@@ -1,0 +1,297 @@
+.login {
+  padding: 70px;
+}
+.signin-form {
+  border-radius: 7px;
+  background-color: #fff;
+  border-bottom: 5px solid #cfcfcf;
+  max-width: 360px;
+  min-width: 260px;
+  margin: auto;
+
+  .color-bar {
+    height: 10px;
+
+    .table {
+      border-collapse: collapse;
+    }
+
+    td {
+      height: 20px;
+      padding: 0;
+      width: 100px;
+    }
+
+    .green {
+      @include border-radius(6px 0);
+      background-color: #c3e07f;
+    }
+
+    .flesh {
+      background-color: #f7fdca;
+    }
+
+    .orange {
+      background-color: #fecf71;
+    }
+
+    .red {
+      background-color: #f0776c;
+    }
+
+    .pink {
+      background-color: #db9dbd;
+    }
+
+    .violet {
+      background-color: #c49cde;
+    }
+
+    .blue {
+      background-color: #969eca;
+      @include border-radius(0 6px);
+    }
+  }
+
+  .title {
+    background-color: #f7f7f7;
+    padding-bottom: 10px;
+    padding-top: 10px;
+
+    h4 {
+      color: #b8b8b8;
+      font-weight: 300;
+      text-align: center;
+    }
+  }
+
+  .body {
+    padding: 25px 25px 35px;
+
+    .form-control {
+      border: 3px solid #ebebeb;
+      border-bottom-width: 5px;
+      font-size: 17px;
+      font-weight: 300;
+      height: 55px;
+      padding-left: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .side-icon {
+      color: #e0e0e0;
+      font-size: 23px;
+      padding: 14px 11px;
+      position: absolute;
+    }
+
+    .btn-info {
+      background-color: #f0776c;
+      border-bottom: 5px solid #d76a60;
+      font-size: 25px;
+      padding: 20px;
+    }
+
+    p {
+      color: #60c1dc;
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    .forgot {
+      margin-bottom: 0;
+    }
+
+    label {
+      color: #60c1dc;
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    .rememberbox {
+      display: inherit !important;
+    }
+  }
+
+  @include breakpoint(tablet) {
+    margin: auto;
+
+    h4 {
+      font-size: 20px;
+    }
+
+    .body {
+      .btn-info{
+        font-size: 20px;
+        padding: 13px;
+      }
+
+      .form-control {
+        font-size: 15px;
+        height: 50px;
+      }
+
+      .side-icon {
+        font-size: 20px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+
+  @include breakpoint(nano) {
+    width: 260px;
+    h4 {
+      font-size: 18px;
+    }
+
+    .body {
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .btn-info{
+        font-size: 16px;
+        padding: 7px;
+      }
+
+      .side-icon {
+        font-size: 16px;
+        padding: 12px 10px;
+      }
+
+      p {
+        font-size: 13px;
+      }
+
+      .form-control {
+        border-width: 1px;
+        border-bottom-width: 3px;
+        font-size: 13px;
+        height: 40px;
+        padding-left: 30px;
+      }
+
+      label {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+.stats {
+  @include border-radius(0 0 0 3px);
+  background-color: #f9fafa;
+  border-right: 1px solid #eee;
+  display: inline-block;
+  padding: 10px 13px;
+  width: 33.33%;
+
+  .blue-icon {
+    background-color: #4d9dd3;
+  }
+
+  .red-icon {
+    background-color: #fc3768;
+  }
+
+  .green-icon {
+    background-color: #9bc84a;
+  }
+
+  .background-icon {
+    @include border-radius(3px);
+    display: inline-block;
+    padding: 10px 10px 2px;
+
+    span {
+      color: #fff;
+      font-size: 37px;
+    }
+  }
+
+  .stat-description {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 0 5px;
+    width: 47%
+  }
+
+  h4, p {
+    font-family: $base-font;
+    text-align: center;
+    color: #6f7c93;
+    margin: 0;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 13px;
+    text-transform: uppercase;
+  }
+}
+
+//dashboard widgets
+
+.widget {
+  @include border-radius(6px);
+  background-color: $white;
+  border: solid 1px #c6cddb;
+  border-bottom-width: 3px;
+  color: #86949b;
+  font-family: $base-font;
+  margin-bottom: 20px;
+
+  .padding-original {
+    padding: 7px 20px;
+  }
+
+  h5 {
+    color: $darkblue;
+    font-size: 17px;
+    margin-bottom: 15px;
+  }
+
+  .notification {
+    border-bottom: solid 1px;
+    border-top: solid 1px;
+    font-size: 13px;
+    padding: 10px 0 35px;
+  }
+
+  .time-stamp {
+    color: #c5c9cb;
+    float: right;
+    font-size: 11px;
+    margin-top: 10px;
+  }
+
+  h6 {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+
+  .engagements {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+
+    i {
+      float: right;
+    }
+  }
+
+  p {
+    font-size: 13px;
+    font-weight: 300;
+  }
+}

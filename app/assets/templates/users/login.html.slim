@@ -1,0 +1,34 @@
+.head
+  = image_tag 'bg.png', class: 'cover'
+.container.login
+  .signin-form
+    .color-bar
+      table
+        tr
+          td.green
+          td.flesh
+          td.orange
+          td.red
+          td.pink
+          td.violet
+          td.blue
+    .title
+      h4 Login in Seconds
+    .body
+      .alert.alert-danger.alert-dismissable ng-if="login.errors" ng-repeat="error in login.errors"
+        p
+          | {{ error }}
+      form name="login_form" ng-submit="submitLogin()"
+        .form-group
+          i.side-icon.fa.fa-user
+          input.form-control type="email" placeholder="What's your email?" ng-model="login.email"
+        .form-group
+          i.side-icon.fa.fa-lock
+          input.form-control type="password" placeholder="Choose a password" ng-model="login.password"
+        .form-group
+          button.btn.btn-block.btn-info type="submit" Sign in
+        label.checkbox for="rememberMe"
+          input type="checkbox" value="" id="rememberMe" data-toggle="checkbox"
+          | Remember me
+        p.forgot Forgot your Password
+        p Not Signup yet? Signup here

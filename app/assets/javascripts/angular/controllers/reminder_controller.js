@@ -1,5 +1,5 @@
 angular.module('Joe.controllers')
-  .controller('ReminderController', ["$scope", "$state", "ReminderService", function($scope, $state, ReminderService) {
+  .controller('ReminderController', ["$scope", "$state", "ReminderService", "AuthService", function($scope, $state, ReminderService, AuthService) {
     $scope.selected =
     {
       ids: {"1": false}
@@ -30,31 +30,33 @@ angular.module('Joe.controllers')
       interval: 15
     }
 
+    AuthService.currentUser()
+    .then(function(d){
+      $scope.submitReminderForm = function() {
 
-    $scope.submitReminderForm = function() {
+        times = _.map($scope.alerts, function(m) {return moment(m.time).format('HH:mm')});
 
-      times = _.map($scope.alerts, function(m) {return moment(m.time).format('HH:mm')});
+        $scope.reminder.frequency = $scope.frequency
+        $scope.reminder.days  = c.toString()
+        $scope.reminder.every  = times.toString()
+        $scope.reminder.every_array = times
+        $scope.reminder.start_date = $scope.date.startDate
+        $scope.reminder.end_date = $scope.date.endDate
+        $scope.reminder.status = 'active'
+        $scope.reminder.user_id = d.id
 
-      $scope.reminder.frequency = $scope.frequency
-      $scope.reminder.days  = c.toString()
-      $scope.reminder.every  = times.toString()
-      $scope.reminder.every_array = times
-      $scope.reminder.start_date = $scope.date.startDate
-      $scope.reminder.end_date = $scope.date.endDate
-      $scope.reminder.status = 'active'
-      $scope.reminder.mobile = "63" + $scope.reminder.mobile
+        $scope.reminder.medicines = $scope.medicines
 
-      $scope.reminder.medicines = $scope.medicines
+        console.log($scope.reminder)
 
-      console.log($scope.reminder)
+        ReminderService.createReminder($scope.reminder)
+          .then(function(d){
+          console.log(d)
 
-      ReminderService.createReminder($scope.reminder)
-        .then(function(d){
-        console.log(d)
-
-        $state.go('list');
-      })
-    }
+          $state.go('detail', {patient_id: d.id});
+        })
+      }
+    });
 
     $scope.choose= function() {
       c=Object.keys($scope.selected.ids)
