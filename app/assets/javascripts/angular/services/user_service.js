@@ -64,7 +64,6 @@ angular.module('Joe.services')
     };
 
     this.logout = function(id) {
-      console.log(id)
       var d = $q.defer();
       $http({
         url: '/users/' + id + '/logout',

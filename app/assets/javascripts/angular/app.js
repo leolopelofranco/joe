@@ -10,26 +10,15 @@ var Joe = angular.module('Joe', [
 ]);
 
 
-Joe.factory("User", ["http", "$q", "$rootScope", "AuthService", function($http, $q, $rootScope, AuthService) {
-var user = null;
-return {
-    fetchUser: function() {
-        AuthService.currentUser()
-          .then(function(user){
-            if (user) {
-              $rootScope.isLoggedIn = true;
-              u = user;
-              return u;
-            }
-          });
-
-
-    },
-    getUser : function(){
-        return user;
-    },
-    setUser : function(u){
-        user = u;
-    }
-  }
+Joe.run(["$rootScope", "UserService", "AuthService", function($rootScope, UserService, AuthService){
+  // Set color for ngProgress to
+  // Muber color scheme
+  AuthService.currentUser()
+    .then(function(user){
+      if (user) {
+        $rootScope.isLoggedIn = true;
+      } else {
+        $rootScope.isLoggedIn = false;
+      }
+    });
 }]);

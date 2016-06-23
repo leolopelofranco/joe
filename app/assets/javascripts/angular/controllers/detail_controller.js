@@ -13,6 +13,8 @@ angular.module('Joe.controllers')
         $state.go('reminder', {patient_id: d.id});
       }
 
+      if(d) {
+
       ReminderService.getPatient(d.id)
         .then(function(d){
 
@@ -52,6 +54,11 @@ angular.module('Joe.controllers')
         $scope.patient = d
         console.log($scope.patient)
       })
+
+      }
+      else {
+        $state.go('index');
+      }
 
       $scope.edit = function(schedule_id) {
         $state.go('edit_schedule', {patient_id: $stateParams.patient_id, schedule_id: schedule_id});

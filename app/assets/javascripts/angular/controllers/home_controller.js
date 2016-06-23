@@ -13,7 +13,9 @@ angular.module('Joe.controllers')
           if($cookies.getObject('user')) {
             UserService.logout(d.id)
               .then(function(){
+
                 $cookies.remove('user')
+                console.log($cookies.getAll())
                 $state.go('index');
               })
           }
