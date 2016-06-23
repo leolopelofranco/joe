@@ -87,6 +87,11 @@ $black: #000;
   }
 }
 
+.underline:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .home-page {
   color: #fff;
   text-align: center;

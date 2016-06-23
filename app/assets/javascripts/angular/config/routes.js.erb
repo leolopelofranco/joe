@@ -3,13 +3,13 @@ Joe.config(["$stateProvider", "$httpProvider", "$urlRouterProvider", "$locationP
     .state('index', {
       url: '/',
       templateUrl: '<%= asset_path("main/home.html") %>',
-      controller: 'HomeController'
+      controller: 'IndexController'
     })
 
     .state('login', {
       url: '/login',
       templateUrl: '<%= asset_path("users/login.html") %>',
-      controller: 'HomeController'
+      controller: 'IndexController'
     })
 
     .state('welcome', {

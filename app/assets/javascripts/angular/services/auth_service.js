@@ -15,7 +15,7 @@ angular.module('Joe.services')
     this.removeCurrentUser = function() {
       service._user = null;
       $rootScope.isLoggedIn = false;
-      $cookies.remove('user');
+      $cookies.removeObject('user');
       $rootScope.$broadcast("user:unset");
     };
 

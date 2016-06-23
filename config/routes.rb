@@ -11,14 +11,12 @@ Rails.application.routes.draw do
       sessions: "users/sessions"
     }
     as :user do
+      post '/register' => 'users/registrations#create', :as => :register
       post 'users/login' => 'users/sessions#create'
       delete 'users/:user_id/logout' => 'users/sessions#destroy'
     end
 
   devise_scope :user do
-    post 'login' => 'sessions#create', :as => :login
-    delete 'logout' => 'sessions#destroy', :as => :logout
-    post '/register' => 'users/registrations#create', :as => :register
     delete 'delete_account' => 'registrations#destroy', :as => :delete_account
   end
 

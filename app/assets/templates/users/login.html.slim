@@ -15,20 +15,20 @@
     .title
       h4 Login in Seconds
     .body
-      .alert.alert-danger.alert-dismissable ng-if="login.errors" ng-repeat="error in login.errors"
+      .alert.alert-danger.alert-dismissable ng-if="user.errors" 
         p
-          | {{ error }}
+          | Oops. Please check your login details.
       form name="login_form" ng-submit="submitLogin()"
         .form-group
           i.side-icon.fa.fa-user
-          input.form-control type="email" placeholder="What's your email?" ng-model="login.email"
+          input.form-control type="email" placeholder="What's your email?" ng-model="user.email"
         .form-group
           i.side-icon.fa.fa-lock
-          input.form-control type="password" placeholder="Choose a password" ng-model="login.password"
+          input.form-control type="password" placeholder="What's your passcode" ng-model="user.password"
         .form-group
           button.btn.btn-block.btn-info type="submit" Sign in
-        label.checkbox for="rememberMe"
-          input type="checkbox" value="" id="rememberMe" data-toggle="checkbox"
-          | Remember me
+        / label.checkbox for="rememberMe"
+        /   input type="checkbox" value="" id="rememberMe" data-toggle="checkbox"
+        /   | Remember me
         p.forgot Forgot your Password
-        p Not Signup yet? Signup here
+        p.underline ng-click="signup()" Not Signup yet? Signup here
