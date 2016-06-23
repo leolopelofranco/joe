@@ -7,12 +7,7 @@ class RemindersController < ApplicationController
   def create
     alarms = []
 
-    user = User.create(
-            first_name: params[:first_name],
-            last_name: params[:last_name],
-            mobile: params[:mobile],
-            email: params[:email],
-          )
+    user = User.find(params[:user_id])
 
     schedule = Schedule.create(
                 user_id: user.id,
@@ -29,7 +24,7 @@ class RemindersController < ApplicationController
                   name: medicine["name"],
                   dosage: medicine["dosage"],
                   schedule_id: schedule.id,
-                  user_id: user.id 
+                  user_id: user.id
                 )
     end
 

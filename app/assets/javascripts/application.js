@@ -13,7 +13,7 @@
 //= require angular-datepicker
 //= require daterangepicker
 //= require angular-daterangepicker.min
-
+//= require devise
 
 
 //= require angular-cookies

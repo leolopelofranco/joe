@@ -15,7 +15,10 @@
         p 
           | {{patient.user.mobile}}
     label.row-spacing for="all_schedules" All Schedules
-    table.table.table-striped.table-hover.table-bordered
+    
+    .row-spacing.header-reminder ng-if="patient.schedules==0"
+      h3 No Schedules
+    table.table.table-striped.table-hover.table-bordered ng-if="patient.schedules!=0"
       thead
         tr
           th Status
@@ -42,4 +45,7 @@
         td 
           button.outline-button.outline-button-blue-green.add-margin-right ng-click="edit(p.schedule.id)" Edit
           button.outline-button.outline-button-red ng-click="delete()" Delete
+    .align-right.row-spacing
+      button.btn.btn-default.add-margin-right Cancel
+      button.btn.btn-primary.btn-wide ng-click="schedule()" Add Schedule
       

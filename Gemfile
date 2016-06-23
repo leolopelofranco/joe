@@ -48,6 +48,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'devise'
+
+gem 'rack-cors', :require => 'rack/cors'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

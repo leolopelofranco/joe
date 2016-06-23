@@ -4,30 +4,6 @@
   form.reminder-form.width-50 name= "reminderForm" ng-submit="submitReminderForm()"
     .header-reminder
       h3 Add a Reminder
-    .row
-      .col-md-6
-        span.input.input--hoshi
-          input#input-4.input__field.input__field--hoshi ng-model="reminder.first_name" type="text" 
-          label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="name" 
-            span.input__label-content.input__label-content--hoshi First Name
-      .col-md-6
-        span.input.input--hoshi
-          input#input-4.input__field.input__field--hoshi ng-model="reminder.last_name" type="text" 
-          label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="mobile" 
-            span.input__label-content.input__label-content--hoshi Last Name
-    .row
-      .col-md-6
-        span.input.input--hoshi
-          .country_code
-            | +63
-          input.country_c#input-4.input__field.input__field--hoshi ng-model="reminder.mobile" type="text" 
-          label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="name" 
-            span.input__label-content.input__label-content--hoshi Mobile
-      .col-md-6
-        span.input.input--hoshi
-          input#input-4.input__field.input__field--hoshi ng-model="reminder.email" type="text" 
-          label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="mobile" 
-            span.input__label-content.input__label-content--hoshi Email Address
     .row ng-repeat="medicine in medicines"
       .col-md-6
         span.input.input--hoshi

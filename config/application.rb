@@ -26,6 +26,19 @@ module Joe
     config.assets.precompile += %w( .svg .eot .woff .ttf )
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts', 'vendor')
 
+    # config.middleware.insert_before 0, "Rack::Cors" do
+    #   allow do
+    #     origins '*' # on production, use the line below instead
+    #     #   origins 'localhost:3001', 'myfabulousapp.com'
+    #     resource '*', :headers => :any, :methods => [:get, :post, :delete, :put, :head]
+    #   end
+    # end
+
+    config.to_prepare do
+      DeviseController.respond_to :html, :json
+    end
+
+
     require './lib/twilio_module.rb'
     require './lib/chikka_module.rb'
   end
