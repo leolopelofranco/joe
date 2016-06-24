@@ -1,0 +1,32 @@
+.head
+  = image_tag 'bg.png', class: 'cover'
+.row-spacing
+  form.reminder-form.width-50 name= "reminderForm" ng-submit="changePassword()"
+    .header-reminder
+      h3 Reset Password
+      .row  
+        .col-md-6
+          span.input.input--hoshi
+            input#input-4.input__field.input__field--hoshi ng-model="user.email" type="email"
+            label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="mobile"
+              span.input__label-content.input__label-content--hoshi Email Address
+        .col-md-6
+          span.input.input--hoshi
+            input#input-4.input__field.input__field--hoshi ng-model="user.current_password" type="password"
+            label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="mobile"
+              span.input__label-content.input__label-content--hoshi Password
+    .row
+      .col-md-6
+        span.input.input--hoshi
+          input#input-4.input__field.input__field--hoshi ng-model="user.password" type="password"
+          label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="mobile"
+            span.input__label-content.input__label-content--hoshi Password
+      .col-md-6
+        span.input.input--hoshi
+          input#input-4.input__field.input__field--hoshi ng-model="user.password_confirmation" type="password"
+          label.input__label.input__label--hoshi.input__label--hoshi-color-1 for="mobile"
+            span.input__label-content.input__label-content--hoshi Password Confirmation
+
+    .row.reminder-submit
+      button.btn.btn-default.add-margin-right Cancel
+      button.btn.btn-primary.btn-wide type="submit" Change Password

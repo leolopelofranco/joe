@@ -3,25 +3,31 @@ Joe.config(["$stateProvider", "$httpProvider", "$urlRouterProvider", "$locationP
     .state('index', {
       url: '/',
       templateUrl: '<%= asset_path("main/home.html") %>',
-      controller: 'IndexController'
+      controller: 'HomeController'
     })
 
     .state('login', {
       url: '/login',
       templateUrl: '<%= asset_path("users/login.html") %>',
-      controller: 'IndexController'
+      controller: 'HomeController'
     })
 
     .state('welcome', {
       url: '/welcome/:patient_id',
       templateUrl: '<%= asset_path("main/welcome.html") %>',
-      controller: 'HomeController'
+      controller: 'WelcomeController'
     })
 
     .state('signup', {
       url: '/signup',
       templateUrl: '<%= asset_path("users/signup.html") %>',
       controller: 'SignupController'
+    })
+
+    .state('password', {
+      url: '/password',
+      templateUrl: '<%= asset_path("users/reset.html") %>',
+      controller: 'WelcomeController'
     })
 
     .state('reminder', {
@@ -47,8 +53,6 @@ Joe.config(["$stateProvider", "$httpProvider", "$urlRouterProvider", "$locationP
       templateUrl: '<%= asset_path("main/edit.html") %>',
       controller: 'EditController'
     })
-
-    $httpProvider.defaults.withCredentials = true;
     AuthProvider.registerPath('register');
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode({

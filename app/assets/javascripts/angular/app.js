@@ -4,10 +4,15 @@ var Joe = angular.module('Joe', [
   'angular-datepicker',
   'daterangepicker',
   'Devise',
-  'Joe.controllers',
+  'Joe.services',
   'Joe.directives',
-  'Joe.services'
+  'Joe.interceptors',
+  'Joe.controllers',
 ]);
+
+Joe.config(["$httpProvider", function($httpProvider){
+  $httpProvider.interceptors.push('UserAuthInterceptor');
+}]);
 
 
 Joe.run(["$rootScope", "UserService", "AuthService", function($rootScope, UserService, AuthService){
@@ -15,6 +20,7 @@ Joe.run(["$rootScope", "UserService", "AuthService", function($rootScope, UserSe
   // Muber color scheme
   AuthService.currentUser()
     .then(function(user){
+
       if (user) {
         $rootScope.isLoggedIn = true;
       } else {

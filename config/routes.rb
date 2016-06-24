@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       post '/register' => 'users/registrations#create', :as => :register
       post 'users/login' => 'users/sessions#create'
       delete 'users/:user_id/logout' => 'users/sessions#destroy'
+      post '/users/:user_id/password' => 'users/sessions#update_password'
     end
 
   devise_scope :user do

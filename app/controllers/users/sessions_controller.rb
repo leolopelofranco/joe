@@ -38,6 +38,24 @@ class Users::SessionsController < DeviseController
       }
   end
 
+  def update_password
+    @user = User.find(params[:user_id])
+    if @user.update(user_params)
+      # Sign in the user by passing validation in case their password changed
+      sign_in @user, :bypass => true
+      redirect_to root_path
+    else
+      render "edit"
+    end
+  end
+
+  private
+
+  def user_params
+    # NOTE: Using `strong_parameters` gem
+    params.require(:user).permit(:password, :password_confirmation)
+  end
+
   def failure
     warden.custom_failure!
     render status: 401,

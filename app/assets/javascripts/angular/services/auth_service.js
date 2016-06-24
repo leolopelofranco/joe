@@ -20,12 +20,10 @@ angular.module('Joe.services')
     };
 
     this.currentUser = function() {
-
       var d = $q.defer();
       if (service._user) {
         d.resolve(service._user);
-      }
-      else if ($cookies.getObject('user')) {
+      } else if ($cookies.getObject('user')) {
         service.setCurrentUser($cookies.getObject('user'));
         d.resolve(service._user);
       } else {

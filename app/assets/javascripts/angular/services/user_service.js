@@ -82,4 +82,28 @@ angular.module('Joe.services')
       });
       return d.promise;
     };
+
+    this.change_password = function(user) {
+      var d = $q.defer();
+      $http({
+        url: '/users/' + user.id + '/password',
+        method: 'POST',
+        data: {
+          user: user
+        }
+      }).success(function(response) {
+        console.log(response)
+        // service._user = null;
+        // $cookies.remove('user')
+        // console.log($cookies.getAll())
+        // $rootScope.isLoggedIn = false;
+        // d.resolve();
+      }).error(function(reason){
+        console.log(reason)
+        d.reject();
+        // TODO: implement if logout fails
+      });
+      return d.promise;
+
+    }
 }]);

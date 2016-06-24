@@ -1,40 +1,30 @@
 angular.module('Joe.controllers')
-  .controller('HomeController', ["$scope", "$state", "AuthService", "$cookies", "Auth", "UserService", function($scope, $state, AuthService, $cookies, Auth, UserService) {
-
-    AuthService.currentUser()
-    .then(function(d){
+  .controller('HomeController', ["$scope", "$state", "AuthService", "$cookies", "Auth", "UserService", "$rootScope", function($scope, $state, AuthService, $cookies, Auth, UserService, $rootScope) {
 
 
-      if(d) {
-        $scope.reminder = function() {
-          $state.go('detail', {patient_id: d.id});
-        }
-        $scope.logout = function() {
-          if($cookies.getObject('user')) {
-            UserService.logout(d.id)
-              .then(function(){
-
-                $cookies.remove('user')
-                console.log($cookies.getAll())
-                $state.go('index');
-              })
-          }
-        };
-      }
-      else {
-        $state.go('index');
-      }
-    })
-
-
-
-
-
+    console.log($cookies.getAll())
 
     $scope.login = function() {
       $state.go('login');
     }
 
+    $scope.signup = function() {
+      $state.go('signup');
+    }
 
+    $scope.user = {}
 
-  }]);
+    $scope.submitLogin = function() {
+
+      UserService.login($scope.user).then(
+        function(user) {
+          $state.go('welcome', {patient_id: user.id});
+        },
+        function (reason) {
+          console.log(reason)
+          $scope.user.errors = reason;
+
+        })
+    }
+
+}]);
