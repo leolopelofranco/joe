@@ -5,11 +5,16 @@ module ChikkaModule
       return Random.rand(10001..99999).to_s
     end
 
-    def send_sms(phone_number, message, message_type)
+    def send_sms(phone_number, message, message_type, request_id)
 
       message_id = generate_random_code()
 
       params = Hash.new
+
+      unless request_id == 0
+        params['request_id'] = request_id
+        params['request_cost'] = 'FREE'
+      end
 
       params['message_type'] = message_type
       params['mobile_number'] = phone_number

@@ -9,11 +9,13 @@ class UserMailer < ActionMailer::Base
       if diff.abs < 600
         Rails.logger.info 'Success'
         current_user = User.find(alarm.user_id)
-        phone_number= current_user.mobile
+        phone_number= "63"+ current_user.mobile
         t = alarm.alarm.strftime("%I:%M %P")
         message = "Hello #{current_user.first_name}! Time to take your #{t} meds. Reply YES if taken."
         message_type = 'SEND'
-        response = ChikkaModule.send_sms(phone_number, message, message_type)
+        request_id = 0
+
+        response = ChikkaModule.send_sms(phone_number, message, message_type, request_id)
 
         # TwilioModule.send_message(phone_number, message)
         alarm.status = "sent"
@@ -45,6 +47,17 @@ class UserMailer < ActionMailer::Base
                     user_id: sched.user_id,
                     schedule_id: sched.id
                   )
+      end
+    end
+
+    scheds_act=Schedule.all.select{|x| x.status == 'active' }
+
+    scheds_act.each do |sched|
+      diff = sched.end_date - Time.now
+
+      if diff < 0
+        sched.status = 'expired'
+        sched.save!
       end
     end
   end
