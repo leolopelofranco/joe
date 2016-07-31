@@ -2,8 +2,12 @@ class UserMailer < ActionMailer::Base
   include TwilioModule, ChikkaModule
 
   def send_reminder
+    globe_numbers = ['905','906','915','916','917','926','927','935','936','937','945','975','976','977','994','995','996','997']
+    smart_numbers = ['907','908','909','910','911','912','913','914','918','919','920','921','922','923','924','925','928','929','930','932','933','934','938','939','942','943','946','947','948','949','950','970','981','989','998','999']
+
     time = Time.now
     alarms=Alarm.all.select{|x| x.status == 'open'}
+    Rails.logger.info alarms
     alarms.each do |alarm|
       diff = time - alarm.alarm
       if diff.abs < 600
@@ -15,7 +19,18 @@ class UserMailer < ActionMailer::Base
         message_type = 'SEND'
         request_id = 0
 
+        Rails.logger.info phone_number
+        Rails.logger.info message
+        Rails.logger.info message_type
+        Rails.logger.info request_id
+
         response = ChikkaModule.send_sms(phone_number, message, message_type, request_id)
+
+        # if globe_numbers.include? current_user.mobile[0,3]
+        #   response = SemaphoreModule.send_sms(phone_number, message)
+        # else
+        #   response = ChikkaModule.send_sms(phone_number, message, message_type, request_id)
+        # end
 
         # TwilioModule.send_message(phone_number, message)
         alarm.status = "sent"

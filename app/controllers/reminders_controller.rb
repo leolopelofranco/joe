@@ -41,25 +41,10 @@ class RemindersController < ApplicationController
                   )
         end
       end
+      UserMailer.send_reminder
     end
 
-    # Filter schedule.all if scheudle.status is active and if date now is within daterange
-    #
-    # 8am 12 pm 3pm 5pm 6pm 7pm
-    #
-    # which time is the closest to datenow
-    #
-    # return schedule
 
-    # params[:alerts].each do |alert|
-    #   alarm = Alarm.create(
-    #             alarm: alert['time'], #datetime
-    #             status: ,
-    #             user_id: user.id,
-    #             schedule_id: params[:schedule_id]
-    #           )
-    #   alarms << alarm
-    # end
 
     reminder = {
       :user => user,

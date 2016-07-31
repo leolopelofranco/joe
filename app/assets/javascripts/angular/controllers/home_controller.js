@@ -2,7 +2,10 @@ angular.module('Joe.controllers')
   .controller('HomeController', ["$scope", "$state", "AuthService", "$cookies", "Auth", "UserService", "$rootScope", function($scope, $state, AuthService, $cookies, Auth, UserService, $rootScope) {
 
 
-    console.log($cookies.getAll())
+    
+    if($cookies.getObject('user')) {
+      $state.go('welcome', {patient_id: $cookies.getObject('user').id});
+    }
 
     $scope.login = function() {
       $state.go('login');

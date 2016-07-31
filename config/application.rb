@@ -41,5 +41,6 @@ module Joe
 
     require './lib/twilio_module.rb'
     require './lib/chikka_module.rb'
+    require './lib/semaphore_module.rb'
   end
 end
