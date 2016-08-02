@@ -39,7 +39,6 @@ angular.module('Joe.controllers')
           e.schedule.every = all_alarms
 
           all_days = ''
-          e.schedule.days = e.schedule.days.split(',');
           if(e.schedule.days.length ==7) {
             e.schedule.days = 'Everyday'
           }

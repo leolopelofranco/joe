@@ -31,7 +31,7 @@ angular.module('Joe.controllers')
       .then(function(d){
         console.log(d)
         // To initialize checked marks from days
-        _.each(d.schedule.days.split(','), function(e) {
+        _.each(d.schedule.days, function(e) {
           $scope.selected.ids[e] = true
         });
 
