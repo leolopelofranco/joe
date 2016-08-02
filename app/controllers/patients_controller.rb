@@ -32,6 +32,7 @@ class PatientsController < ApplicationController
     schedule  = []
 
     schedules.each do |sched|
+      sched.days = sched.days.split(",")
       schedule << {
         schedule: sched,
         medicines: sched.medicines
@@ -48,6 +49,7 @@ class PatientsController < ApplicationController
   def get_schedule
     user = User.find(params[:patient_id])
     schedule = Schedule.find(params[:schedule_id])
+    schedule.days = schedule.days.split(",")
     medicines = schedule.medicines
     response = {
       :user => user,

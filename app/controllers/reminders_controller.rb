@@ -45,7 +45,8 @@ class RemindersController < ApplicationController
     end
 
 
-
+    schedule.days = schedule.days.split(",")
+    
     reminder = {
       :user => user,
       :schedule => schedule
