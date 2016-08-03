@@ -18,14 +18,16 @@ angular.module('Joe.controllers')
       ReminderService.getPatient(d.id)
         .then(function(d){
 
+          console.log(d)
+
           $scope.scheduleLength = d.schedules.length
         _.each(d.schedules, function(e){
-          e.schedule.end_date = moment(e.schedule.end_date).format('ll')
-          e.schedule.start_date = moment(e.schedule.start_date).format('ll')
-          e.schedule.every = e.schedule.every.split(',');
+          e.end_date = moment(e.end_date).format('ll')
+          e.start_date = moment(e.start_date).format('ll')
+          e.every = e.every.split(',');
 
           formatted_times = []
-          _.each(e.schedule.every, function(a){
+          _.each(e.every, function(a){
             formatted_times.push(moment(a, ["HH:mm"]).format("h:mm A"))
           });
           formatted_times.sort(function (a, b) {
@@ -36,18 +38,18 @@ angular.module('Joe.controllers')
           _.each(formatted_times, function(a){
             all_alarms = all_alarms + a + '|'
           });
-          e.schedule.every = all_alarms
+          e.every = all_alarms
 
           all_days = ''
-          if(e.schedule.days.length ==7) {
-            e.schedule.days = 'Everyday'
+          if(e.days.length ==7) {
+            e.days = 'Everyday'
           }
           else {
-            _.each(e.schedule.days, function(a){
+            _.each(e.days, function(a){
               day =  dayOfWeekAsString(a)
               all_days = all_days + day + ','
             });
-            e.schedule.days = all_days
+            e.days = all_days
           }
         });
         $scope.patient = d

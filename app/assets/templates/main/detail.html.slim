@@ -30,18 +30,18 @@
           th Action
       tr.pointer-cursor.search-table ng-repeat="p in patient.schedules" 
         td 
-          | {{p.schedule.status}}
+          | {{p.status}}
         td 
           p ng-repeat="i in p.medicines"
             | {{i.name}} ({{i.dosage}})
         td 
-          | {{p.schedule.start_date}} - {{p.schedule.end_date}}
+          | {{p.start_date}} - {{p.end_date}}
         td 
-          | {{p.schedule.days}}
+          | {{p.days}}
         td 
-          | {{p.schedule.frequency}}x a day
+          | {{p.frequency}}x a day
         td 
-          | {{p.schedule.every}}
+          | {{p.every}}
         td 
           button.outline-button.outline-button-blue-green.add-margin-right ng-click="edit(p.schedule.id)" Edit
           button.outline-button.outline-button-red ng-click="delete()" Delete

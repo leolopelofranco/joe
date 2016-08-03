@@ -32,9 +32,18 @@ class PatientsController < ApplicationController
     schedule  = []
 
     schedules.each do |sched|
-      sched.days = sched.days.split(",")
+      sched.days = sched.days.split(",").map(&:to_i)
+
       schedule << {
-        schedule: sched,
+        created_at: sched.created_at,
+        updated_at: sched.updated_at,
+        user_id: sched.user_id,
+        days: sched.days,
+        frequency: sched.frequency,
+        start_date: sched.start_date,
+        end_date: sched.end_date,
+        every: sched.every,
+        status: sched.status,
         medicines: sched.medicines
       }
     end
@@ -49,11 +58,25 @@ class PatientsController < ApplicationController
   def get_schedule
     user = User.find(params[:patient_id])
     schedule = Schedule.find(params[:schedule_id])
-    schedule.days = schedule.days.split(",")
+    schedule.days = schedule.days.split(",").map(&:to_i)
     medicines = schedule.medicines
+
+    sched = {
+      created_at: schedule.created_at,
+      updated_at: schedule.updated_at,
+      user_id: schedule.user_id,
+      days: schedule.days,
+      frequency: schedule.frequency,
+      start_date: schedule.start_date,
+      end_date: schedule.end_date,
+      every: schedule.every,
+      status: schedule.status,
+      medicines: schedule.medicines
+    }
+
     response = {
       :user => user,
-      :schedule => schedule,
+      :schedule => sched,
       :medicines => medicines
     }
 
