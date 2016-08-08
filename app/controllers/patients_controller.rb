@@ -35,6 +35,7 @@ class PatientsController < ApplicationController
       sched.days = sched.days.split(",").map(&:to_i)
 
       schedule << {
+        schedule_id: sched.id,
         created_at: sched.created_at,
         updated_at: sched.updated_at,
         user_id: sched.user_id,
@@ -62,6 +63,7 @@ class PatientsController < ApplicationController
     medicines = schedule.medicines
 
     sched = {
+      schedule_id: schedule.id,
       created_at: schedule.created_at,
       updated_at: schedule.updated_at,
       user_id: schedule.user_id,
