@@ -44,6 +44,7 @@ class PatientsController < ApplicationController
         start_date: sched.start_date,
         end_date: sched.end_date,
         every: sched.every,
+        list_every: sched.every.split(","),
         status: sched.status,
         medicines: sched.medicines
       }
@@ -72,6 +73,7 @@ class PatientsController < ApplicationController
       start_date: schedule.start_date,
       end_date: schedule.end_date,
       every: schedule.every,
+      list_every: schedule.every.split(","),
       status: schedule.status,
       medicines: schedule.medicines
     }
