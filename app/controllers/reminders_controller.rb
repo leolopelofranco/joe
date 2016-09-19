@@ -24,7 +24,8 @@ class RemindersController < ApplicationController
                   name: medicine["name"],
                   dosage: medicine["dosage"],
                   schedule_id: schedule.id,
-                  user_id: user.id
+                  user_id: user.id,
+                  stock: medicine["stock"]
                 )
     end
 
@@ -68,30 +69,62 @@ class RemindersController < ApplicationController
   end
 
   def edit
-    user = User.find(params[:patient_id])
-    schedule = Schedule.find(params[:schedule_id])
+    schedule = Schedule.find(params[:schedule]["schedule_id"])
+    user = User.find(schedule.user_id)
+    schedule.frequency = params[:schedule]["frequency"]
+    schedule.days = params[:schedule]["days"]
+    schedule.every = params[:schedule]["every"]
+    schedule.start_date = params[:schedule]["start_date"]
+    schedule.end_date = params[:schedule]["end_date"]
+    schedule.status = params[:schedule]["status"]
 
-    user.first_name = params[:reminder]["first_name"]
-    user.last_name = params[:reminder]["last_name"]
-    user.mobile = params[:reminder]["mobile"]
-    user.email = params[:reminder]["mobile"]
-
-    schedule.frequency = params[:reminder]["frequency"]
-    schedule.days = params[:reminder]["days"]
-    schedule.every = params[:reminder]["every"]
-    schedule.start_date = params[:reminder]["start_date"]
-    schedule.end_date = params[:reminder]["end_date"]
-    schedule.status = params[:reminder]["status"]
-
-    user.save!
     schedule.save!
 
-    reminder = {
-      :user => user,
+    params[:medicines].each do |medicine|
+
+
+      if medicine.key?(:med_count)
+        medic = Medicine.create(
+                    name: medicine["name"],
+                    dosage: medicine["dosage"],
+                    schedule_id: schedule.id,
+                    user_id: user.id,
+                    stock: medicine["stock"]
+                  )
+      else
+        med = Medicine.find(medicine["id"])
+
+        med.name = medicine["name"]
+        med.dosage = medicine["dosage"]
+        med.schedule_id = schedule.id
+        med.user_id = user.id
+        med.stock = medicine["stock"]
+
+        med.save!
+      end
+
+    end
+
+    schedules = {
       :schedule => schedule,
+      :medicines => schedule.medicines
     }
 
-    render json: reminder
+    render json: schedules
+  end
+
+  def take
+    schedule = Schedule.find(params[:schedule_id])
+    alarms = schedule.alarms.search{|x| x.alarm == params[:alarm].to_datetime }
+    alarm = alarms[0]
+    alarm.status = params[:status]
+    alarm.save!
+
+    response = {
+      :alarm => alarm
+    }
+
+    render json: response
   end
 
 

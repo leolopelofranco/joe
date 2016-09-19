@@ -41,9 +41,9 @@
         td 
           | {{p.frequency}}x a day
         td 
-          | {{p.every}}
+          | {{p.every_formatted}}
         td 
-          button.outline-button.outline-button-blue-green.add-margin-right ng-click="edit(p.schedule.id)" Edit
+          button.outline-button.outline-button-blue-green.add-margin-right ng-click="edit(p.schedule_id)" Edit
           button.outline-button.outline-button-red ng-click="delete()" Delete
     .align-right.row-spacing
       button.btn.btn-default.add-margin-right Cancel

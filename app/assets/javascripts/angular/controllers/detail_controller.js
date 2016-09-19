@@ -38,7 +38,7 @@ angular.module('Joe.controllers')
           _.each(formatted_times, function(a){
             all_alarms = all_alarms + a + '|'
           });
-          e.every = all_alarms
+          e.every_formatted = all_alarms
 
           all_days = ''
           if(e.days.length ==7) {

@@ -1,5 +1,5 @@
 angular.module('Joe.controllers')
-  .controller('EditController', ["$scope", "ReminderService", "$state", "stateParams", function($scope, ReminderService, $state, $stateParams) {
+  .controller('EditController', ["$scope", "ReminderService", "$state", "$stateParams", function($scope, ReminderService, $state, $stateParams) {
     $scope.date = {
         startDate: moment(),
         endDate: moment().add(7, "days")
@@ -45,20 +45,23 @@ angular.module('Joe.controllers')
           $scope.alerts.push(a)
         });
 
-        $scope.reminder.first_name = d.user.first_name
-        $scope.reminder.last_name = d.user.last_name
-        $scope.reminder.mobile = d.user.mobile
-        $scope.reminder.email = d.user.email
-        $scope.reminder.medicine = d.medicines[0].name
-        $scope.reminder.dosage = d.medicines[0].dosage
+        $scope.medicines = d.medicines
         $scope.frequency = d.schedule.frequency
         $scope.reminder.days  = d.schedule.days
         $scope.reminder.every  = d.schedule.every
         $scope.reminder.start_date = moment($scope.date.startDate).format('LLLL')
         $scope.reminder.end_date = moment($scope.date.endDate).format('LLLL')
         $scope.reminder.status = d.schedule.status
+        $scope.reminder.schedule_id = d.schedule.schedule_id
 
     });
+
+    $scope.addMedicine= function(){
+      var newItemNo =$scope.medicines.length+1;
+      console.log(newItemNo);
+      $scope.medicines.push({'med_count': newItemNo});
+
+    };
 
     $scope.change = function() {
       $scope.alerts = []
@@ -74,6 +77,11 @@ angular.module('Joe.controllers')
     $scope.save = function() {
 
       times = _.map($scope.alerts, function(m) {return moment(m.time).format('HH:mm')});
+
+      c=Object.keys($scope.selected.ids)
+      .filter(function(k){return $scope.selected.ids[k]})
+      .map(Number)
+      console.log(c)
       $scope.reminder.days  = c.toString()
       $scope.reminder.every  = times.toString()
       $scope.reminder.start_date = moment($scope.date.startDate).format('LLLL')
@@ -81,11 +89,11 @@ angular.module('Joe.controllers')
       $scope.reminder.frequency = $scope.frequency
 
       d = {
-        patient_id: $stateParams.patient_id,
-        schedule_id: $stateParams.schedule_id,
-        medicines: $scope.reminder.medicine,
-        reminder: $scope.reminder
+        medicines: $scope.medicines,
+        schedule: $scope.reminder
       }
+
+      console.log(d)
 
       ReminderService.editSchedule(d)
         .then(function(d){

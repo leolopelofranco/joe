@@ -86,4 +86,6 @@ class PatientsController < ApplicationController
 
     render json: response
   end
+
+  
 end
