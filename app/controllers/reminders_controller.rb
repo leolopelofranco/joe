@@ -25,7 +25,7 @@ class RemindersController < ApplicationController
                   dosage: medicine["dosage"],
                   schedule_id: schedule.id,
                   user_id: user.id,
-                  stock: medicine["stock"]
+                  stock: medicine["stock"].to_i
                 )
     end
 
