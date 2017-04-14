@@ -15,7 +15,14 @@ class UserMailer < ActionMailer::Base
         current_user = User.find(alarm.user_id)
         phone_number= "63"+ current_user.mobile
         t = alarm.alarm.strftime("%I:%M %P")
-        message = "Hello #{current_user.first_name}! Time to take your #{t} meds. Reply YES if taken."
+        if t.include? 'am'
+          period_time = 'morning'
+        elsif t.include? '12:00 pm'
+          period_time = 'noon'
+        else
+          period_time = 'evening'
+
+        message = "Hello #{current_user.first_name}! A friendly reminder to take your #{period_time} #{t} medicines."
         message_type = 'SEND'
         request_id = 0
 
