@@ -21,15 +21,11 @@ class UserMailer < ActionMailer::Base
           period_time = 'noon'
         else
           period_time = 'evening'
+        end
 
         message = "Hello #{current_user.first_name}! A friendly reminder to take your #{period_time} #{t} medicines."
         message_type = 'SEND'
         request_id = 0
-
-        Rails.logger.info phone_number
-        Rails.logger.info message
-        Rails.logger.info message_type
-        Rails.logger.info request_id
 
         response = ChikkaModule.send_sms(phone_number, message, message_type, request_id)
 
