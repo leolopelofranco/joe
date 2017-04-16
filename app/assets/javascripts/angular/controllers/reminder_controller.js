@@ -17,6 +17,20 @@ angular.module('Joe.controllers')
         endDate: moment().add(7, "days")
     };
 
+    $scope.directions = [
+      {
+        "name":"none"
+      },
+      {
+        "name": "Before Meals"
+      },
+      {
+        "name": "After Meals"
+      }
+    ]
+
+    $scope.direction = $scope.directions[0]
+
     $scope.medicines=[{id:1}];
 
     $scope.addMedicine= function(){

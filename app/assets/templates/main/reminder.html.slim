@@ -1,16 +1,21 @@
 .head
   = image_tag 'bg.png', class: 'cover'
 .row-spacing
-  form.reminder-form.width-50 name= "reminderForm" ng-submit="submitReminderForm()"
+  form.reminder-form.width-60 name= "reminderForm" ng-submit="submitReminderForm()"
     .header-reminder
       h3 Add a Reminder
     .row ng-repeat="medicine in medicines"
-      .col-md-6
+      .col-md-3.no-padding
         span.input.input--hoshi
           input#input-5.input__field.input__field--hoshi ng-model="medicine.name" type="text" 
           label.input__label.input__label--hoshi.input__label--hoshi-color-2 for="medicine" 
             span.input__label-content.input__label-content--hoshi 
               | Medicine Name {{ $index + 1 }}
+      .col-md-3
+        .inputs#row-space-top-2
+          label for="direction" Direction
+          select ng-options="direction.name as direction.name for direction in directions" ng-model="medicine.direction"
+            option style="display:none" value="" Special Directions
       .col-md-3
         span.input.input--hoshi
           input#input-6.input__field.input__field--hoshi ng-model="medicine.dosage" type="text" 

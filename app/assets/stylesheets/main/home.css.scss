@@ -22,6 +22,11 @@ $orange: #F57B40;
   width: 50%;
 }
 
+.width-60 {
+  width: 60%;
+}
+
+
 .width-75 {
   width: 75%;
 }
@@ -53,6 +58,14 @@ $orange: #F57B40;
   font-size: 16px;
   font-weight: 300;
   padding: 3px 10px;
+}
+
+.no-padding {
+  padding-right: 0;
+}
+
+#row-space-top-2 {
+  margin-top:2em;
 }
 
 .outline-button-blue-green:hover {
