@@ -30,16 +30,16 @@ class UserMailer < ActionMailer::Base
         before_meals = directions.count('Before Meals')
         after_meals = directions.count('After Meals')
 
-        if before_meals =! 0 && after_meals =! 0
+        if before_meals != 0 && after_meals != 0
           message = "Hello #{current_user.first_name}! A friendly reminder to take your #{period_time} #{t} medicines. 1 packet before meal and 1 packet after meal."
-        elsif before_meals =! 0
+        elsif before_meals != 0
           message = "Hello #{current_user.first_name}! A friendly reminder to take your #{period_time} #{t} medicines. 1 packet before meal."
-        elsif after_meals =! 0
+        elsif after_meals != 0
           message = "Hello #{current_user.first_name}! A friendly reminder to take your #{period_time} #{t} medicines. 1 packet after meal."
         else
           message = "Hello #{current_user.first_name}! A friendly reminder to take your #{period_time} #{t} medicines."
         end
-        
+
         message_type = 'SEND'
         request_id = 0
 
