@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
     globe_numbers = ['905','906','915','916','917','926','927','935','936','937','945','975','976','977','994','995','996','997']
     smart_numbers = ['907','908','909','910','911','912','913','914','918','919','920','921','922','923','924','925','928','929','930','932','933','934','938','939','942','943','946','947','948','949','950','970','981','989','998','999']
 
-    time = Time.now
+    time = Time.zone.now
     alarms=Alarm.all.select{|x| x.status == 'open'}
     Rails.logger.info alarms
     alarms.each do |alarm|
@@ -52,8 +52,8 @@ class UserMailer < ActionMailer::Base
   end
 
   def create_alarm_of_the_day
-    time = Time.now
-    scheds=Schedule.all.select{|x| x.status == 'active' && (x.start_date.to_date..x.end_date.to_date).cover?(Date.today) && (x.days.split(",").map(&:to_i)).include?(time.wday)}
+    time = Time.zone.now
+    scheds=Schedule.all.select{|x| x.status == 'active' && (x.start_date.to_date..x.end_date.to_date).cover?(Time.zone.now.to_date) && (x.days.split(",").map(&:to_i)).include?(time.wday)}
 
     # create the alarm of the day
     scheds.each do |sched|
@@ -71,7 +71,7 @@ class UserMailer < ActionMailer::Base
     scheds_act=Schedule.all.select{|x| x.status == 'active' }
 
     scheds_act.each do |sched|
-      diff = sched.end_date - Time.now
+      diff = sched.end_date - Time.zone.now
 
       if diff < 0
         sched.status = 'expired'

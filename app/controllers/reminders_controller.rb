@@ -30,10 +30,10 @@ class RemindersController < ApplicationController
     end
 
 
-    if schedule.start_date.today?
+    if schedule.start_date.to_date == Time.zone.now.to_date
       params[:every_array].each do |every|
         e = every.to_datetime.change(:offset => "+0800")
-        if e > Time.now
+        if e > Time.zone.now
           alarm = Alarm.create(
                     alarm: e,
                     status: 'open',
