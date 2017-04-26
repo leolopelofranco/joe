@@ -17,12 +17,16 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
+
+Time.zone = "Asia/Singapore"
+
+every 1.day, :at => Time.zone.parse('12:01 am').utc do
+  rake 'jane:create_alarm_of_the_day'
+end
+
 every 10.minutes do
   rake 'jane:send_reminder'
 end
 
-every 1.day, :at => '12:01 am' do
-  rake 'jane:create_alarm_of_the_day'
-end
 
 # Learn more: http://github.com/javan/whenever
