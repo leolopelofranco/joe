@@ -18,9 +18,16 @@
 # end
 
 
+require "tzinfo"
+
+def local(time)
+  TZInfo::Timezone.get('Asia/Singapore').local_to_utc(Time.parse(time))
+end
+
+
 Time.zone = "Asia/Singapore"
 
-every 1.day, :at => Time.zone.parse('12:01 am').utc do
+every 1.day, at: local("12:01 am") do
   rake 'jane:create_alarm_of_the_day'
 end
 

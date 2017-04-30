@@ -2,7 +2,27 @@ class MessagesController < ApplicationController
   include ChikkaModule
 
   skip_before_filter :verify_authenticity_token
-  skip_before_filter :authenticate_user!, :only => "receive_sms"
+  skip_before_filter :authenticate_user!, :only => [:receive_sms, :palm_sms]
+
+
+  def palm_sms
+    phone_number = '+639175314928'
+    email = params[:email]
+    mobile = params[:mobile]
+    note = params[:note]
+    name = params[:name]
+    message_type = 'SEND'
+    request_id = 0
+
+    message = "#{name} just inquired on Palm. Contact details are #{email} and #{mobile}. He said #{note}."
+    ChikkaModule.send_sms(phone_number, message, message_type, request_id)
+
+    render json: {
+      status: 'success'
+    }
+  end
+
+
 
   def receive_sms
 

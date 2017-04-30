@@ -189,6 +189,7 @@ DEPENDENCIES
   sprockets (= 2.12.3)
   susy
   twilio-ruby
+  tzinfo
   tzinfo-data
   uglifier (>= 1.3.0)
   whenever

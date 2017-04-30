@@ -43,7 +43,7 @@ gem 'sinatra'
 gem 'whenever', :require => false
 
 gem 'rails_12factor', group: :production
-
+gem 'tzinfo'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -75,8 +75,9 @@ class UserMailer < ActionMailer::Base
     scheds.each do |sched|
       every = sched.every.split(",")
       every.each do |e|
+        e = Time.zone.parse(e).to_datetime
         alarm = Alarm.create(
-                    alarm: e.to_datetime.change(:offset => "+0800"),
+                    alarm: e,
                     status: 'open',
                     user_id: sched.user_id,
                     schedule_id: sched.id

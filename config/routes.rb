@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
   post '/receive_sms' => 'messages#receive_sms'
 
+  post '/palm_sms' => 'messages#palm_sms'
+
   post '/reminder/take' => 'reminders#take'
 
   get '/reminder/set' => 'reminders#set'
