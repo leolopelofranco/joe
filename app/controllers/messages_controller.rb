@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
 
 
   def palm_sms
-    phone_number = '9175314928'
+    phone_number = 639175314928
     email = params[:email]
     mobile = params[:mobile]
     note = params[:note]
@@ -15,8 +15,10 @@ class MessagesController < ApplicationController
     request_id = 0
 
     message = "#{name} just inquired on Palm. Contact details are #{email} and #{mobile}. He said #{note}."
-    ChikkaModule.send_sms(phone_number, message, message_type, request_id)
 
+    x = ChikkaModule.send_sms(phone_number, message, message_type, request_id)
+
+    
     render json: {
       status: 'success'
     }
