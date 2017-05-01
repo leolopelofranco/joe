@@ -38,6 +38,13 @@ module Joe
       DeviseController.respond_to :html, :json
     end
 
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
+
 
     require './lib/twilio_module.rb'
     require './lib/chikka_module.rb'
