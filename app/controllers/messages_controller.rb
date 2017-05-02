@@ -18,8 +18,9 @@ class MessagesController < ApplicationController
 
     x = ChikkaModule.send_sms(phone_number, message, message_type, request_id)
 
-    
+
     render json: {
+      result: x,
       status: 'success'
     }
   end
