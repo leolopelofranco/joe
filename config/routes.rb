@@ -31,6 +31,8 @@ Rails.application.routes.draw do
 
   post '/palm_sms' => 'messages#palm_sms'
 
+  get '/get_s3_upload_key' => 'messages#get_s3_upload_key'
+
   post '/reminder/take' => 'reminders#take'
 
   get '/reminder/set' => 'reminders#set'

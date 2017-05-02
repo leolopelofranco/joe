@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   include ChikkaModule
 
   skip_before_filter :verify_authenticity_token
-  skip_before_filter :authenticate_user!, :only => [:receive_sms, :palm_sms]
+  skip_before_filter :authenticate_user!, :only => [:receive_sms, :palm_sms, :get_s3_upload_key]
 
 
   def palm_sms
@@ -25,7 +25,48 @@ class MessagesController < ApplicationController
     }
   end
 
+  def get_s3_upload_key
 
+    require 'base64'
+    require 'openssl'
+    require 'digest/sha1'
+
+    bucket = 'sigv4examplebucket'
+    access_key = 'AKIAIOSFODNN7EXAMPLE'
+    secret = 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
+    key = "user/user1/"
+    expiration = 5.minutes.from_now.utc.strftime('%Y-%m-%dT%H:%M:%S.000Z')
+    max_filesize = 2.megabytes
+    acl = 'public-read'
+    sas = '201' # Tells amazon to redirect after success instead of returning xml
+    policy = Base64.encode64(
+      "{ 'expiration': '2015-12-30T12:00:00.000Z',
+        'conditions': [
+          {'bucket': 'sigv4examplebucket'},
+          ['starts-with', '$key', 'user/user1/'],
+          {'acl': 'public-read'},
+          {'success_action_redirect': 'http://sigv4examplebucket.s3.amazonaws.com/successful_upload.html'},
+          ['starts-with', '$Content-Type', 'image/'],
+          {'x-amz-meta-uuid': '14365123651274'},
+          {'x-amz-server-side-encryption': 'AES256'},
+          ['starts-with', '$x-amz-meta-tag', ''],
+
+          {'x-amz-credential': 'AKIAIOSFODNN7EXAMPLE/20151229/us-east-1/s3/aws4_request'},
+          {'x-amz-algorithm': 'AWS4-HMAC-SHA256'},
+          {'x-amz-date': '20151229T000000Z' }
+        ]
+      }
+      ").gsub(/\n|\r/, '')
+    signature = Base64.encode64(OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new('SHA256'), secret, policy)).gsub(/\n| |\r/, '')
+    hello = {:access_key => access_key, :key => key, :policy => policy, :signature => signature, :sas => sas, :bucket => bucket, :acl => acl, :expiration => expiration}
+
+    render json: {
+      result: signature,
+      status: 'success',
+      hello: hello,
+      policy: policy
+    }
+  end
 
   def receive_sms
 

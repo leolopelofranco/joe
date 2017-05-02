@@ -75,7 +75,11 @@ class UserMailer < ActionMailer::Base
     scheds.each do |sched|
       every = sched.every.split(",")
       every.each do |e|
-        e = Time.zone.parse(e).to_datetime
+        if e.to_f > 12
+          e = Time.zone.parse(e).to_datetime
+        else
+          e = Time.zone.parse(e).to_datetime + 1.days
+        end
         alarm = Alarm.create(
                     alarm: e,
                     status: 'open',
