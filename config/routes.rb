@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   post '/receive_sms' => 'messages#receive_sms'
 
   post '/palm_sms' => 'messages#palm_sms'
+  post '/palm_code' => 'messages#palm_code'
 
   get '/get_s3_upload_key' => 'messages#get_s3_upload_key'
 
