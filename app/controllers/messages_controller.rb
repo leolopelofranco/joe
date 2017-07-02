@@ -63,6 +63,48 @@ class MessagesController < ApplicationController
     }
   end
 
+  def palm_honeypot
+    phone_number = 639175314928
+    brand = params[:brand]
+    link = params[:link]
+    engagements = params[:engagements]
+    message_type = 'SEND'
+    request_id = 0
+
+    message = "#{brand} has a brewing campaign reaching #{engagements}. Find it here #{link}"
+
+    x = ChikkaModule.send_sms(phone_number, message, message_type, request_id)
+
+
+    render json: {
+      result: x,
+      status: 'success'
+    }
+  end
+
+  def palm_patsy
+    phone_number = params[:branch]
+    first_name = params[:first_name]
+    last_name = params[:last_name]
+    mobile = params[:mobile]
+    date = params[:date]
+    time = params[:time]
+    table = params[:table]
+    comment = params[:comment]
+    message_type = 'SEND'
+    request_id = 0
+
+    message = "Hi, #{first_name} #{last_name} just a made reservation for #{table} at #{date}, #{time}. Contact him/her at #{mobile}. Some comments are #{comment}. Ty"
+
+    x = ChikkaModule.send_sms(phone_number, message, message_type, request_id)
+
+
+    render json: {
+      result: x,
+      status: 'success'
+    }
+  end
+
   def get_s3_upload_key
 
     require 'base64'
