@@ -64,7 +64,7 @@ class MessagesController < ApplicationController
   end
 
   def palm_honeypot
-    phone_number = 639175314928
+    phone_number = params[:mobile]
     brand = params[:brand]
     link = params[:link]
     engagements = params[:engagements]
