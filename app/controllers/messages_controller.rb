@@ -69,6 +69,7 @@ class MessagesController < ApplicationController
     message_type = 'SEND'
     request_id = 0
     message = ""
+    Rails.logger.info params[:brands]
     params[:brands].each do |brand|
       if brand.links.empty?
         posts = ""
