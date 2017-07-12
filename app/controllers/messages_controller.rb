@@ -71,7 +71,7 @@ class MessagesController < ApplicationController
     message = ""
     Rails.logger.info params[:brands]
     params[:brands].each do |brand|
-      unless brand["links"].empty?
+      unless brand["links"].nil?
         posts = ""
         brand["links"].each do |link|
           posts = posts + link["link"] +',' + link["engagements"]
