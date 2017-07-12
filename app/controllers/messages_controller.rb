@@ -71,9 +71,9 @@ class MessagesController < ApplicationController
     message = ""
     Rails.logger.info params[:brands]
     params[:brands].each do |brand|
-      if brand.links.empty?
+      unless brand["links"].empty?
         posts = ""
-        brand.links.each do |link|
+        brand["links"].each do |link|
           posts = posts + link["link"] +',' + link["engagements"]
         end
         message  = message + brand["brand"] +  "has brewing campaigns. They are " + posts
