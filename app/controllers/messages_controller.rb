@@ -71,7 +71,7 @@ class MessagesController < ApplicationController
     message_type = 'SEND'
     request_id = 0
 
-    message = "#{brand} has a brewing campaign reaching #{engagements}. Find it here #{link}"
+    message = "#{brand} has a brewing campaign reaching #{engagements} engagements. Find it here #{link}"
 
     x = ChikkaModule.send_sms(phone_number, message, message_type, request_id)
 
