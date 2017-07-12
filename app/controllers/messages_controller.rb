@@ -76,7 +76,7 @@ class MessagesController < ApplicationController
         brand["links"].each do |link|
           posts = posts + ' ' +  link["link"] +' with ' + link["engagements"].to_s + ' engagements. '
         end
-        message  = message + ' ' + brand["brand"] +  "has brewing campaigns. They are " + posts
+        message  = message + ' ' + brand["brand"] + " has brewing campaigns. They are " + posts
       end
     end
 
