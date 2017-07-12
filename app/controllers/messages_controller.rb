@@ -65,13 +65,19 @@ class MessagesController < ApplicationController
 
   def palm_honeypot
     phone_number = params[:mobile]
-    brand = params[:brand]
-    link = params[:link]
-    engagements = params[:engagements]
+    brand = params[:brands]
     message_type = 'SEND'
     request_id = 0
-
-    message = "#{brand} has a brewing campaign reaching #{engagements} engagements. Find it here #{link}"
+    message = ""
+    params[:brands].each do |brand|
+      if brand.links.empty?
+        posts = ""
+        brand.links.each do |link|
+          posts = posts + link["link"] +',' + link["engagements"]
+        end
+        message  = message + brand["brand"] +  "has brewing campaigns. They are " + posts
+      end
+    end
 
     x = ChikkaModule.send_sms(phone_number, message, message_type, request_id)
 
