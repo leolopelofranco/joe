@@ -5,18 +5,12 @@ class MessagesController < ApplicationController
   skip_before_filter :authenticate_user!, :only => [:receive_sms, :palm_sms, :get_s3_upload_key]
 
 
-  def palm_sms
-    phone_number = 639175314928
-    email = params[:email]
+  def palm_patsy_pink
     mobile = params[:mobile]
-    note = params[:note]
-    name = params[:name]
+    message = params[:message]
     message_type = 'SEND'
     request_id = 0
-
-    message = "#{name} just inquired on Palm. Contact details are #{email} and #{mobile}. He said #{note}."
-
-    x = ChikkaModule.send_sms(phone_number, message, message_type, request_id)
+    x = ChikkaModule.send_sms(mobile, message, message_type, request_id)
 
 
     render json: {
