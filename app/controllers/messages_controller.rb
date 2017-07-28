@@ -98,6 +98,24 @@ class MessagesController < ApplicationController
     }
   end
 
+  def palm_inquiries
+    phone_number = params[:mobile]
+    company = params[:company]
+    name = params[:name]
+    link = params[:link]
+    message_type = 'SEND'
+    request_id = 0
+    message = "Hi #{company}! #{name} wants to talk to a Customer Rep. Check it here at #{link}"
+
+    x = ChikkaModule.send_sms(phone_number, message, message_type, request_id)
+
+
+    render json: {
+      result: x,
+      status: 'success'
+    }
+  end
+
   def palm_patsy
     phone_number = params[:branch]
     first_name = params[:first_name]
