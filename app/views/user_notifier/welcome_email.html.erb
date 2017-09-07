@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @user["name"]%> just inquired on Anytime Fitness. Below are the details.</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <p> Name </p>
+      </div>
+      <div class="col-md-6">
+        <p> <%= @user["name"] %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <p> Email </p>
+      </div>
+      <div class="col-md-6">
+        <p> <%= @user["from"] %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <p>Number</p>
+      </div>
+      <div class="col-md-6">
+        <p> <%= @user["number"] %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <p>Message</p>
+      </div>
+      <div class="col-md-6">
+        <p> <%= @user["message"] %></p>
+      </div>
+    </div>
+  </body>
+</html>

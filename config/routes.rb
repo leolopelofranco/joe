@@ -37,6 +37,8 @@ Rails.application.routes.draw do
   get '/palm_motolite' => 'messages#palm_motolite'
   post '/palm_inquiries' => 'messages#palm_inquiries'
 
+  post '/detect' => 'home#detect'
+
   get '/get_s3_upload_key' => 'messages#get_s3_upload_key'
 
   post '/reminder/take' => 'reminders#take'
@@ -48,6 +50,9 @@ Rails.application.routes.draw do
   get '/patient/:patient_id' => 'patients#get_patient'
 
   get '/patient/:patient_id/schedule/:schedule_id' => 'patients#get_schedule'
+
+  post '/inquire' => 'home#inquire'
+  post '/reserve' => 'home#reserve'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

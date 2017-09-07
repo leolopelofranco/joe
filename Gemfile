@@ -40,6 +40,8 @@ gem 'oj'
 gem 'twilio-ruby'
 gem 'sinatra'
 
+gem 'sendgrid-ruby'
+
 gem 'whenever', :require => false
 
 gem 'rails_12factor', group: :production
@@ -49,6 +51,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'devise'
+
+gem 'franc'
 
 gem 'rack-cors', :require => 'rack/cors'
 
