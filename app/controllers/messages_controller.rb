@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   include ChikkaModule
+  include SemaphoreModule
 
   skip_before_filter :verify_authenticity_token
   skip_before_filter :authenticate_user!, :only => [:receive_sms, :palm_sms, :get_s3_upload_key]
@@ -30,7 +31,7 @@ class MessagesController < ApplicationController
 
     message = "#{name} just inquired on Palm. Contact details are #{email} and #{mobile}. He said #{note}."
 
-    x = ChikkaModule.send_sms(phone_number, message, message_type, request_id)
+    x = SemaphoreModule.send_sms2(phone_number, message)
 
 
     render json: {
@@ -60,21 +61,19 @@ class MessagesController < ApplicationController
   def palm_honeypot
     phone_number = params[:mobile]
     brand = params[:brands]
-    message_type = 'SEND'
-    request_id = 0
     message = ""
     Rails.logger.info params[:brands]
     params[:brands].each do |brand|
       unless brand["links"].nil?
         posts = ""
         brand["links"].each do |link|
-          posts = posts + ' ' +  link["link"] +' with ' + link["engagements"].to_s + ' engagements. '
+          posts = posts + ' ' +  link["link"] +' with ' + link["engagements"].to_s + ' comments'
         end
         message  = message + ' ' + brand["brand"] + " has brewing campaigns. They are " + posts
       end
     end
 
-    x = ChikkaModule.send_sms(phone_number, message, message_type, request_id)
+    x = SemaphoreModule.send_sms2(phone_number, message)
 
 
     render json: {
