@@ -75,7 +75,6 @@ class MessagesController < ApplicationController
 
     x = SemaphoreModule.send_sms2(phone_number, message)
 
-
     render json: {
       result: x,
       status: 'success'
