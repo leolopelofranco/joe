@@ -67,7 +67,7 @@ class MessagesController < ApplicationController
       unless brand["links"].nil?
         posts = ""
         brand["links"].each do |link|
-          posts = posts + ' ' +  link["link"] +' with ' + link["engagements"].to_s + ' comments'
+          posts = posts + ' ' +  link["link"] +' with ' + link["comments"].to_s + ' comments'
         end
         message  = message + ' ' + brand["brand"] + " has brewing campaigns. They are " + posts
       end
