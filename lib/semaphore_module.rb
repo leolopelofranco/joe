@@ -27,7 +27,8 @@ module SemaphoreModule
       request = Net::HTTP::Post.new(uri)
       message = 'hello'
       phone_number='09175314928'
-      request.body = "apikey=" + apikey + "&number=" + phone_number + "&message=" + message
+      sender_name = "W&R"
+      request.body = "apikey=" + apikey + "&number=" + phone_number + "&number=" + sender_name + "&message=" + message
 
 
       req_options = {

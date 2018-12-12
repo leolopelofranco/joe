@@ -60,18 +60,8 @@ class MessagesController < ApplicationController
 
   def palm_honeypot
     phone_number = params[:mobile]
-    brand = params[:brands]
-    message = ""
-    Rails.logger.info params[:brands]
-    params[:brands].each do |brand|
-      unless brand["links"].nil?
-        posts = ""
-        brand["links"].each do |link|
-          posts = posts + ' ' +  link["link"] +' with ' + link["comments"].to_s + ' comments'
-        end
-        message  = message + ' ' + brand["brand"] + " has brewing campaigns. They are " + posts
-      end
-    end
+    message = params[:message]
+    
 
     x = SemaphoreModule.send_sms2(phone_number, message)
 
