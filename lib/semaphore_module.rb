@@ -25,9 +25,8 @@ module SemaphoreModule
       apikey="Jaxn19qGX11Uzm9dxzpJ"
       uri = URI.parse("https://semaphore.co/api/v4/messages")
       request = Net::HTTP::Post.new(uri)
-      message = 'hello'
       sender_name = "W&R"
-      request.body = "apikey=" + apikey + "&number=" + phone_number + "&number=" + sender_name + "&message=" + message
+      request.body = "apikey=" + apikey + "&number=" + phone_number + "&message=" + message
 
 
       req_options = {
@@ -37,6 +36,8 @@ module SemaphoreModule
       response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
         http.request(request)
       end
+
+      Rails.logger.info response
     end
 
   end
