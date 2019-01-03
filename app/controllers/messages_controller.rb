@@ -61,9 +61,10 @@ class MessagesController < ApplicationController
   def palm_honeypot
     phone_number = params[:mobile]
     message = params[:message]
-    
+
 
     x = SemaphoreModule.send_sms2(phone_number, message)
+    y = SemaphoreModule.send_sms3(phone_number, message)
 
     render json: {
       result: x,

@@ -40,5 +40,29 @@ module SemaphoreModule
       Rails.logger.info response
     end
 
+    def send_sms3(phone_number, message)
+      require 'net/http'
+      require 'uri'
+
+      apikey="Jaxn19qGX11Uzm9dxzpJ"
+      uri = URI.parse("https://semaphore.co/api/v4/messages")
+      request = Net::HTTP::Post.new(uri)
+      sender_name = "W&R"
+      request.body = "apikey=" + apikey + "&number=" + "09171250311" + "&message=" + message
+
+
+ 
+      req_options = {
+        use_ssl: uri.scheme == "https",
+      }
+
+      response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+        http.request(request)
+      end
+
+      Rails.logger.info response
+    end
+
+
   end
 end
